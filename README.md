@@ -3,7 +3,7 @@
 Project setup
 1. Clone the repo
 
-  git clone https://github.com/DiyanKalaydzhiev23/petstagram-2024.git](https://github.com/deividid/Softuni_exam/tree/main/djangoProject
+  git clone https://github.com/deividid/Softuni_exam/tree/main/djangoProject
 
 2. Open the project
 3. Install dependencies
