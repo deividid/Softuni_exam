@@ -13,6 +13,7 @@ Project setup
 4. Change DB settings in settings.py
 
 DATABASES = {
+
       "default": {
           "ENGINE": "django.db.backends.postgresql",
           "NAME": "your_db_name",
