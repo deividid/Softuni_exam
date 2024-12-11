@@ -3,12 +3,12 @@
 Project setup
 1. Clone the repo
 
-  git clone https://github.com/DiyanKalaydzhiev23/petstagram-2024.git
+  git clone https://github.com/DiyanKalaydzhiev23/petstagram-2024.git](https://github.com/deividid/Softuni_exam/tree/main/djangoProject
 
 2. Open the project
 3. Install dependencies
 
-  pip install -r requirements.txt
+  pip install psycopg2
 
 4. Change DB settings in settings.py
   DATABASES = {
