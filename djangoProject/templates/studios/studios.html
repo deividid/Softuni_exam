@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Studios Gallery</h1>
+
+        <div class="gallery" id="gallery">
+            {% for studio in studios_list %}
+                <div class="gallery-item">
+                    <img src="{{ studio.picture_url }}" alt="Image 1">
+                    
+                    <div>
+                        <p>Name: {{ studio.name }}</p>
+                        <p>Creation Year: {{ studio.creation_year }}</p>
+                        {% if studio.bio %}
+                            <p>Biography: {{ studio.bio }}</p>
+                        {% endif %}
+                        {% if studio.get_movie_names %}
+                            <ul> Movies
+                                 {% for title in studio.get_movie_names %}
+                                    <li>{{ title }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                        {% endif %}
+                    </div>
+                    {% if request.user == studio.uploaded_by %}
+                        <div class="btn-group">
+                            <a href="{% url 'edit_studio' studio.pk %}">Edit</a>
+                            <a href="{% url 'delete_studio' studio.pk %}">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+{% endblock %}

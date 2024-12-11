@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="createPage">
+        <form method="post">
+            <fieldset>
+                <legend>Add Studio</legend>
+                <div class="container">
+                    {{ form }}
+                    {% csrf_token %}
+                    
+                    <button type="submit">Add New Studio</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}

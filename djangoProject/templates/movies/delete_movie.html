@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="editPage">
+        <form method="post">
+            <fieldset>
+                <legend>Delete Movie</legend>
+                <div class="container">
+                    {{ form }}
+                    {% csrf_token %}
+                    
+                    <button type="submit">Delete Movie</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}

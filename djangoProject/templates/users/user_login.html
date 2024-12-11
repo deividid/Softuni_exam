@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="createPage">
+        <form method="post">
+            <fieldset>
+                <legend>Login to account</legend>
+                <div class="container">
+                    {% csrf_token %}
+                    {{ form.errors }}
+                    {{ form.username }}
+                    {{ form.password }}
+                    
+                    <button type="submit">Login</button>
+                </div>
+            </fieldset>
+            <div>
+
+            <!-- Link to Register Page-->
+            <p>Don't have an account? <a href="{% url 'create_user' %}">Register</a></p>
+        </div>
+        </form>
+    </section>
+
+{% endblock %}

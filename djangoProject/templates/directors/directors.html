@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Directors Gallery</h1>
+
+        <div class="gallery" id="gallery">
+            {% for director in director_list %}
+                <div class="gallery-item">
+                    <img src="{{ director.picture }}" alt="Image 1">
+                    
+                    <div>
+                        <p>First name: {{ director.first_name }}</p>
+                        <p>Last name: {{ director.last_name }}</p>
+                        <p>Birthdate: {{ director.birth_date }}</p>
+                        <p>Country of origin: {{ director.country_of_origin }}</p>
+                        <p>Still Active: {{ director.is_active }}</p>
+                        {% if director.bio %}
+                            <p>Biography: {{ director.bio }}</p>
+                        {% endif %}
+                        {% if director.get_movie_names %}
+                            <ul> Movies
+                                 {% for title in director.get_movie_names %}
+                                    <li>{{ title }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                        {% endif %}
+                    </div>
+                    {% if request.user == director.uploaded_by %}
+                        <div class="btn-group">
+                            <a href="{% url 'edit_director' director.pk %}">Edit</a>
+                            <a href="{% url 'delete_director' director.pk %}">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+{% endblock %}

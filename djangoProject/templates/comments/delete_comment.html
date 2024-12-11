@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="editPage">
+        <form method="post">
+            <fieldset>
+                <legend>Delete Comment</legend>
+                <div class="container">
+                    {{ form }}
+                    {% csrf_token %}
+                    
+                    <button type="submit">Delete Comment</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}

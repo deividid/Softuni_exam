@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie Gallery</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    
+    <div class="header">
+        <h1>Movie Gallery</h1>
+        
+        <div class="navbar" id="navbar">
+            <a href="{% url 'movies' %}">Movies</a>
+            <a href="{% url 'directors' %}">Directors</a>
+            <a href={% url 'studios' %}>Studios</a>
+            {% if request.user.is_authenticated %}
+                <a href={% url 'create_movie' %}>Create Movie</a>
+                <a href={% url 'add_director' %}>Add Director</a>
+                <a href={% url 'add_studio' %}>Add Studio</a>
+            {% endif %}
+        </div>
+        {% if not request.user.is_authenticated %}
+            <form method="get" action="{% url 'create_user' %}">
+                <button class="login-btn"><i>Register</i></button>
+            </form>
+            <form method="get" action="{% url 'login' %}">
+                <button class="login-btn"><i>Login</i></button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="login-btn"><i>Logout</i></button>
+            </form>
+        {% endif %}
+    </div>
+    
+
+    {% block content %}
+    <!-- Gallery Section -->
+    <div class="container">
+        <h1>Movie Gallery</h1>
+
+        <div class="gallery" id="gallery">
+            {% for movie in movie_list %}
+                <div class="gallery-item">
+                    <img src="{{ movie.poster }}" alt="Image 1">
+                    
+                    <div>
+                        <p>Title: {{ movie.title }}</p>
+                        <p>Release year: {{ movie.release_year }}</p>
+                        <p>Genre: {{ movie.genre }}</p>
+                        {% if movie.director %}
+                            <p>Director: {{ movie.director.last_name }}</p>
+                        {% endif %}
+                        {% if movie.studio %}
+                            <p>Studio: {{ movie.studio.name }}</p>
+                        {% endif %}
+                        {% if movie.description %}
+                            <p>Description: {{ movie.description }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="btn-group">
+                        {% if request.user == movie.uploaded_by %}
+                            <a href="{% url 'edit_movie' movie.pk %}">Edit</a>
+                            <a href="{% url 'delete_movie' movie.pk %}">Delete</a>
+                        {% endif %}
+                        <a href="{% url 'comments' movie.pk %}">Comments</a>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+    
+    {% endblock %}
+     
+
+</body>
+</html>

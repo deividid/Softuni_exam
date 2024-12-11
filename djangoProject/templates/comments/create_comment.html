@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="createPage">
+        <form method="post">
+            <fieldset>
+                <legend>Add Comment</legend>
+                <div class="container">
+                    {{ form }}
+                    {% csrf_token %}
+                    
+                    <button type="submit">Add New Comment</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}
