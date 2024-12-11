@@ -11,7 +11,8 @@ Project setup
   pip install psycopg2
 
 4. Change DB settings in settings.py
-  DATABASES = {
+
+DATABASES = {
       "default": {
           "ENGINE": "django.db.backends.postgresql",
           "NAME": "your_db_name",
@@ -21,7 +22,7 @@ Project setup
           "PORT": "5432",
       }
   }
-5. Run the migrations
+6. Run the migrations
 
   python manage.py migrate
 
